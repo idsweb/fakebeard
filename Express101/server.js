@@ -3,6 +3,11 @@ var app = express();
 
 app.use(express.static('public'));
 
+app.use(function (req, res, next) {
+  console.log('Time:', Date.now())
+  next()
+})
+
 app.get('/', function(req, res){
     res.send('welocome to the index page...');
 });

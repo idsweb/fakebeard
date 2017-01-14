@@ -1,5 +1,7 @@
 Web applications with Nodejs and Express
 ========================================
+Set up
+------
 Set up the initial folder structure....
 ```
 MKDIR yoursite
@@ -11,6 +13,8 @@ Next install express
 ```
 npm install express --save
 ```
+Hello world
+-----------
 Create a file called server.js and enter the snippet below:
 ```javascript
 var express = require('express');
@@ -20,17 +24,35 @@ app.listen(3000, function () {
     console.log("Were listenig....");
 });
 ```
-Launch a browser and go to http://localhost:3000. You should get a message saying there is no get defined.
+Launch a browser and go to http://localhost:3000. You should get a message saying there is no **get route defined**. We will fix that with middleware.
 
-Press Ctrl+C to quit the Node applicaiton (on Windows) and add the snippet below in server.js before app.listen
+Press Ctrl+C to quit the Node applicaiton (on Windows)
+
+Middleware
+----------
+
+Express is a routing and middleware web framework that has minimal functionality of its own: An Express application is essentially a series of middleware function calls.
+
+Middleware functions are functions that have access to the request object (req), the response object (res), and the next middleware function in the application’s request-response cycle. The next middleware function is commonly denoted by a variable named next.
+
+Bind application-level middleware to an instance of the app object by using the app.use() and app.METHOD() functions, where METHOD is the HTTP method of the request that the middleware function handles (such as GET, PUT, or POST) in lowercase.
+
+Add the snippet below in server.js before app.listen, this will run on every request and then pass on to the next 
+```javascript
+app.use(function (req, res, next) {
+  console.log('Time:', Date.now())
+  next()
+})```
+
+Add the snippet below in server.js before app.listen, to handle a get request to the root.
 ```javascript
 app.get('/', function(req, res){
     res.send('welocome to the index page...');
 });
 ```
-Run node server again and refresh the page, you should see the text above.
+Run node server again and refresh the page, you should see 'welocome to the index page...', as well as the date and time in the console.
 
-add another directory and add a text file hello.txt
+add another directory for static files and add a text file hello.txt (notice we dont have an app method for this).
 ```
 mkdir public
 cd public
