@@ -13,10 +13,8 @@ Next install express
 ```
 npm install express --save
 ```
-Hello world
------------
-Create a file called server.js and enter the snippet below:
-```javascript
+A simple web application
+-------------------------
 var express = require('express');
 var app = express();
 
@@ -37,14 +35,15 @@ Middleware functions are functions that have access to the request object (req),
 
 Bind application-level middleware to an instance of the app object by using the app.use() and app.METHOD() functions, where METHOD is the HTTP method of the request that the middleware function handles (such as GET, PUT, or POST) in lowercase.
 
-Add the snippet below in server.js before app.listen, this will run on every request and then pass on to the next 
+Add the snippet below in server.js before app.listen, this uses the app.use() method and will run on every request and then pass on to the next 
 ```javascript
 app.use(function (req, res, next) {
   console.log('Time:', Date.now())
   next()
-})```
+})
+```
 
-Add the snippet below in server.js before app.listen, to handle a get request to the root.
+Add the snippet below in server.js before app.listen, this uses the app.METHOD (for a HTTP GET) to handle a get request to the root. This is specified by the path '/'.
 ```javascript
 app.get('/', function(req, res){
     res.send('welocome to the index page...');
@@ -52,6 +51,8 @@ app.get('/', function(req, res){
 ```
 Run node server again and refresh the page, you should see 'welocome to the index page...', as well as the date and time in the console.
 
+Static files
+------------
 add another directory for static files and add a text file hello.txt (notice we dont have an app method for this).
 ```
 mkdir public
