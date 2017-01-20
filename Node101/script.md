@@ -13,6 +13,8 @@ console.log('Hello World')
 Ctrl ' for terminal
 node server
 Ctrl c
+mkdir node_modules
+cd node_modules
 mkdir greetmodule
 cd greetmodule
 npm init
