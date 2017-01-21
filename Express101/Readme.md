@@ -15,6 +15,8 @@ npm install express --save
 ```
 A simple web application
 -------------------------
+Enter the text below into server.js
+```javascript
 var express = require('express');
 var app = express();
 
@@ -66,14 +68,38 @@ Add the javascript below
 ```javascript
 app.use(express.static('public'));
 ```
-Notice that the public directory is not part of the url e.g. public/images would /images
+Notice that the public directory is not part of the url e.g. public/images would be /images
 
-Tip: you can add a generic 404 using something like below:
+Routing
+-------
+Routes (see below) must be listed in order from the most generic to the most specific. You have seen the route for get at the root.
+You can access route parameters like below (the parameters have a : in front of them.
+```javascript
+app.get('/users/:userid', function (req, res) {
+    res.send(req.params); //{"userid":"ian"}
+    console.log(req.params.userid);
+});
+```
+Tip: you can add a generic 404 using something like below (remember to add it after your other routes):
 ```javascript
 app.get('*', function (req,res) {  
     res.status(404).send('These arent the files your looking for');
 });
 ```
+REST
+----
+You can use the .json method of the response object to set the application type and return json
+```javascript
+app.get('/api/users/:userid', function (req, res) {
+    res.json({
+        name:'Ian',
+        link:req.url,
+        dob:'05/06/19**'
+    })
+});
+```
+
+
 
 
 
