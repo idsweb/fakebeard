@@ -1,33 +1,40 @@
+
+Nunjucks
+========
+[Nunjucks](https://mozilla.github.io/nunjucks/)
+A rich and powerful templating language for JavaScript (like EJS).
+
+Steps are:
+1. Create an express web application
+2. Plug in the Nunjucks template engine
+
+Express web application
+-----------------------
+```
 mkdir nunjucks101
 cd nunjucks101
 npm init
-
-enter server.js as the main script
-
+```
+Enter server.js as the main script during the npm init wizard, accept everything else, then add express and nunjucks
+```
 npm install express --save
 npm install nunjucks --save
-
-mkdir views
-create an index.html html file (use html:5 in vs code)
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>This is the index page</title>
-</head>
-<body>
-    Index page
-</body>
-</html>
-
-create server.js
+```
+Create the server.js file
 
 optionally add typescript intellisense in vs code for express
+```
 npm install --save @types/express
-optionally install nodemon npm install nodemon (type nodemon at the terminal to watch)
+```
+optionally install nodemon 
+```
+npm install nodemon (type nodemon at the terminal to watch)
+```
+Edit the server.js file
 
-'''javascript
+The key bit is the **nunjucks.configure** method
+
+```javascript
 var express = require("express")
 var nunjucks = require("nunjucks")
 
@@ -47,23 +54,49 @@ app.get('/', function (req, res) {
 app.listen(3000, function () {
     console.log("were listening")
 })
+```
+Plugin the Nunjucks template engine
+-----------------------------------
+We will create a views folder for our nunjucks templates
+```
+mkdir views
+```
+create an index.html html file (use html:5 in vs code)
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>This is the index page</title>
+</head>
+<body>
+    Index page
+</body>
+</html>
+```
+Start the serve (```node server``` or ```nodemon```) and launch a browser and go to localhost:3000
 
-Launch a browser and go to localhost:3000
+Ctrl + c to stop the server
 
 Alter index.html and add this html to the body
+```html
 This is the welcome message {{ message }}
-
-Alter server.js
+```
+Alter server.js and add an express route for the index ('/'), this passes in a JSON object as a second parameter
+```javascript
 app.get('/', function (req, res) {  
     res.render('Index', { message : 'Hello World' })
 });
-
+```
 Includes
 --------
-Add a file called footer.html to the views folder, add some html
+Nunjucks lets you manage your templates with inheritance (see later) and includes.
+Add a file called **footer.html** to the views folder, add some html
+```html
 <div>
     <p> This is the footer </p>
 </div>
+```
 Alter Index.html and add the footer Includes
 {% include "footer.html" %}
 Inheritance
