@@ -148,7 +148,7 @@ Inheritance
 -----------
 Nunjucks lets you modularise your templates through inheritance.
 
-Create a main html file for your common layout.
+Alter the main html file for your common layout.
 ```html
     <div class="heading">
         {% block heading %}
