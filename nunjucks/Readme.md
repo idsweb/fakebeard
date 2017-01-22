@@ -101,7 +101,8 @@ Alter Index.html and add the footer Includes
 {% include "footer.html" %}
 Inheritance
 -----------
-Add another file called layout.html, add the text below to replace all content
+Add another file called layout.html, add the html below
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -137,12 +138,18 @@ Add another file called layout.html, add the text below to replace all content
     </div>
 </body>
 </html>
-Alter Index.html to the text below
+```
+Now alter Index.html to the text below
+```html
 {% extends "layout.html" %}
+```
 Save and restart the server (rs if using nodemon)
-Add block sections
-------------
-Alter layout.html as below
+Inheritance
+-----------
+Nunjucks lets you modularise your templates through inheritance.
+
+Create a main html file for your common layout.
+```html
     <div class="heading">
         {% block heading %}
         {% endblock %}
@@ -155,7 +162,9 @@ Alter layout.html as below
         {% block right %}
         {% endblock %}
     </div>
+```
 And alter index.html as below
+```html
 {% block heading %}
     This is the heading
 {% endblock %}
@@ -168,29 +177,35 @@ And alter index.html as below
     TH
     his is the right block
 {% endblock %}
+```
 Restart the server
 Filters (for-each)
 ------------------
 Add a node module for mock data
+```
 cd node_modules
 mkdir dataservice
 cd dataservice
-npm init (accept defaults)
-add index.js
-Add this code
+npm init
+``` 
+accept the defaults from the npm wizard
+add an index.js file
+Add this code to make a function that returns an array of objects
+```javascript
 exports.getNews = function(){
     return // copy and paste the JSON from the MOCK_NEWS.json file in assets
 }
-CD ../..
-Add a route for the news to server.js (notice the news array is the value of the news object)
+```
+In the server.js file add a route for the news to server.js (notice the news array is the value of the news object)
+```javascript
 app.get('/news', function (req, res) {
     var news = dataservice.getNews();
     res.render('news', { news: news} );
 })
-Add a news.html file
-TIP see this post for debugging https://code.visualstudio.com/docs/runtimes/nodejs
-Click the debug icon and then the gear (cog) and select node as language (dont forget to stop nodemon)
-Add a html file for the news in views
+```
+Add a news.html file (TIP: see this post for debugging https://code.visualstudio.com/docs/runtimes/nodejs). 
+Add a html file for the news in views and add the html below
+```html
 <h1>Posts</h1>
 <ul>
 {% for item in news %}
@@ -199,3 +214,7 @@ Add a html file for the news in views
   <li>This would display if the 'item' collection were empty</li>
 {% endfor %}
 </ul>
+```
+Now restart the server and go to http://localhost:3000/news
+
+There is much more you can do with Nunjucks - check out the [documentation](https://mozilla.github.io/nunjucks/)
