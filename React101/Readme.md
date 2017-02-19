@@ -50,6 +50,7 @@ Remove the markup between the div tages from the html page and add a new place h
 <div id="jsxContainer"></div>
 ```
 
+Your page should now look like this [full html page](https://raw.githubusercontent.com/idsweb/fakebeard/master/React101/public/react101.html)
 Create a script file with the jsx file extension and add the script below: 
 
 ```javascript 
@@ -233,7 +234,7 @@ class NumberCollector extends React.Component{
     }
 ```
 
-The entire script is looks like the React101.jsx script.
+The entire script is looks like the [React101.jsx](https://raw.githubusercontent.com/idsweb/fakebeard/master/React101/public/react101.jsx) script.
 
 Moving on
 ---------
