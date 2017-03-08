@@ -21,8 +21,9 @@ function greet(message: string){
 greet(5);
 ```
 Notice the squiggly under 5
-6. Correct the code so the input is a string
-7. Run the tsc command again atnd see the output, this time notice the code is converted to JavaScript and the string typing is gone
+
+7. Correct the code so the input is a string
+8. Run the tsc command again atnd see the output, this time notice the code is converted to JavaScript and the string typing is gone
 
 Setting up the environment
 --------------------------------
