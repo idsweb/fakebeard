@@ -4,9 +4,10 @@ This set of files is a way for me to group together very simple descriptions and
 
 Their are a number of technologies/tools listed below that stack together:
 
-1. Git
+1. ES6
 2. Node
 3. NPM
 4. Express
 5. EJS
 6. Nunjucks
+7. Reactjs
